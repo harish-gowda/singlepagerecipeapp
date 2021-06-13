@@ -1,4 +1,4 @@
-Single Page Recipe App
+****Single Page Recipe App****
 
 Single Page web Application with list of recipes information.
 Recipe details can be maintained by CURD operations.
