@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>AngularJS</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.js"></script>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<script th:src="@{/main.js}"></script>
+<link th:href="@{/main.css}" rel="stylesheet" />
+<head>
+<body class="bg-image" ng-app="Recipes">
+	<div ng-controller="RecipeController" ng-show="favRecipe">
+		<div>
+			<h4 class="display-4">Favourite Recipes</h4>
+			<table class="table table-striped">
+				<tbody>
+					<tr ng-repeat="recipe in recipes">
+						<td><a id="name" ng-click="listRecipeById(recipe)">{{
+								recipe.recipename }}</a></td>
+						<td><button ng-click="editRecipe(recipe)" type="button"
+								class="btn btn-secondary">Update</button></td>
+						<td><button ng-click="deleteRecipe(recipe)" type="button"
+								class="btn btn-danger">Delete</button></td>
+					</tr>
+				</tbody>
+			</table>
+			<br />
+			<button ng-click="createRecipe()" type="button"
+				class="btn btn-success btn-lg">Add New Recipe</button>
+			<br />
+			<div id="details" ng-show="recipeDetails">
+				<h4 class="display-4">A Recipe Details</h4>
+				<dl>
+					<dt>Name</dt>
+					<dd>- {{recipe.recipename}}</dd>
+					<dt>Type</dt>
+					<dd>- {{recipe.recipetype}}</dd>
+					<dt>Servings</dt>
+					<dd>- {{recipe.servings}}</dd>
+					<dt>Ingredients</dt>
+					<dd>- {{recipe.ingredients}}</dd>
+					<dt>Cooking Instructions</dt>
+					<dd>- {{recipe.cookinginstructions}}</dd>
+					<dt>Creation Date</dt>
+					<dd>- {{recipe.creationdate}}</dd>
+				</dl>
+			</div>
+			<br />
+			<form ng-submit="submitRecipe()">
+				<table border="0" ng-show="recipeForm">
+					<tr>
+						<td>Recipe Name</td>
+						<td><input type="text" ng-model="recipe.recipename" required/></td>
+					</tr>
+					<tr>
+						<td>Recipe Type</td>
+						<td><select ng-model="recipe.recipetype" required>
+							<option value="veg">Veg</option>
+							<option value="nonVeg">Non-Veg</option>
+						</select></td>
+					</tr>
+					<tr>
+						<td>Servings</td>
+						<td><input type="number" ng-model="recipe.servings"  min="1" max="1000" /></td>
+					</tr>
+					<tr>
+						<td>Ingredients</td>
+						<td><textarea rows="4" cols="50"
+								ng-model="recipe.ingredients" required></textarea></td>
+					</tr>
+					<tr>
+						<td>Cooking Instructions</td>
+						<td><textarea rows="4" cols="50"
+								ng-model="recipe.cookinginstructions"></textarea></td>
+					</tr>
+					<tr>
+						<td colspan="2"><input type="submit" value="Submit"
+							class="btn btn-success" /></td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</div>
+</body>
+</html>
